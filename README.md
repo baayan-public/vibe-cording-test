@@ -1,2 +1,2 @@
-# vibe-cording-test
-vibe-cording-test
+# 1. このリポジトリについて
+バイブコーディングのテストをするためのリポジトリ
