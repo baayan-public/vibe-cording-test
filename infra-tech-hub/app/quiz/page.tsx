@@ -188,13 +188,17 @@ export default function QuizPage() {
         </div>
       </div>
 
-      {filteredQuizzes.length > 0 ? (
-        <QuizList quizzes={filteredQuizzes} />
-      ) : (
-        <div className="text-center p-8 bg-slate-800/30 border border-slate-700/30 rounded-2xl">
-          <p>該当するクイズがありません。フィルタを変更してみてください。</p>
-        </div>
-      )}
+      <div className="transition-all duration-500 ease-in-out">
+        {filteredQuizzes.length > 0 ? (
+          <div key={`${filter}-${topicFilter}`} className="animate-fade-in">
+            <QuizList quizzes={filteredQuizzes} />
+          </div>
+        ) : (
+          <div key={`empty-${filter}-${topicFilter}`} className="text-center p-8 bg-slate-800/30 border border-slate-700/30 rounded-2xl animate-fade-in">
+            <p>該当するクイズがありません。フィルタを変更してみてください。</p>
+          </div>
+        )}
+      </div>
 
       <div className="mt-6">
         <Link href="/" className="text-indigo-400 hover:text-indigo-300 transition-colors">

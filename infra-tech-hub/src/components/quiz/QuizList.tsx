@@ -17,11 +17,12 @@ type QuizListProps = {
 export default function QuizList({ quizzes }: QuizListProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {quizzes.map((quiz) => (
+      {quizzes.map((quiz, index) => (
         <Link
           key={quiz.id}
           href={`/quiz/${quiz.id}`}
-          className="block bg-gradient-to-br from-slate-800/40 to-slate-900/40 hover:from-slate-700/50 hover:to-slate-800/50 backdrop-blur-sm border border-slate-700/30 hover:border-slate-600/50 rounded-2xl p-8 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          className="block bg-gradient-to-br from-slate-800/40 to-slate-900/40 hover:from-slate-700/50 hover:to-slate-800/50 backdrop-blur-sm border border-slate-700/30 hover:border-slate-600/50 rounded-2xl p-8 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl opacity-0 animate-slide-up"
+          style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'forwards' }}
         >
           <div className="flex justify-between items-start mb-3">
             <h2 className="text-xl font-bold text-slate-100">{quiz.title}</h2>
