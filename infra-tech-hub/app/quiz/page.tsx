@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import QuizList from "@/components/quiz/QuizList";
 
-// 仮のクイズデータ
+// 実装済みのクイズデータ
 const quizzes = [
   {
     id: "syn-handshake",
     title: "TCPの3ウェイハンドシェイク",
     level: 1,
-    levelName: "SYN",
-    questions: 5,
+    levelName: "入門",
+    questions: 3,
     description: "TCP接続確立の基本プロセスを理解する",
     topic: "ネットワーク基礎",
   },
@@ -18,28 +18,10 @@ const quizzes = [
     id: "tcp-flags",
     title: "TCPフラグの基本",
     level: 1,
-    levelName: "SYN",
-    questions: 7,
+    levelName: "入門",
+    questions: 2,
     description: "SYN、ACK、FIN、RSTなど主要フラグの役割",
     topic: "ネットワーク基礎",
-  },
-  {
-    id: "flow-control",
-    title: "フロー制御の仕組み",
-    level: 2,
-    levelName: "ACK",
-    questions: 8,
-    description: "ウィンドウサイズと輻輳制御の基礎",
-    topic: "ネットワーク応用",
-  },
-  {
-    id: "packet-analysis",
-    title: "基本的なパケット解析",
-    level: 3,
-    levelName: "ESTABLISHED",
-    questions: 6,
-    description: "Wiresharkを使った基本的なTCPパケット解析",
-    topic: "トラブルシューティング",
   },
 ];
 
@@ -66,98 +48,138 @@ export default function QuizPage() {
   }, [filter, topicFilter]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">クイズ一覧</h1>
-        <p className="mb-6">
+        <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">クイズ一覧</h1>
+        <p className="mb-8 text-lg text-slate-300">
           挑戦したいクイズを選択してください。レベルやトピックでフィルタリングできます。
         </p>
 
         <div className="mb-4">
-          <h3 className="text-sm text-gray-400 mb-2">レベル</h3>
+          <h3 className="text-base font-semibold text-indigo-400 mb-3">レベル</h3>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200-lg transition-all duration-200 ${
                 filter === "all"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
               すべて
             </button>
             <button
               onClick={() => setFilter("1")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 filter === "1"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
-              Lv.1 SYN
+              Lv.1 入門
             </button>
             <button
               onClick={() => setFilter("2")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 filter === "2"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
-              Lv.2 ACK
+              Lv.2 初級
             </button>
             <button
               onClick={() => setFilter("3")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 filter === "3"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
-              Lv.3 ESTABLISHED
+              Lv.3 中級
+            </button>
+            <button
+              onClick={() => setFilter("4")}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                filter === "4"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
+              }`}
+            >
+              Lv.4 上級
+            </button>
+            <button
+              onClick={() => setFilter("5")}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                filter === "5"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
+              }`}
+            >
+              Lv.5 スペシャリスト
+            </button>
+            <button
+              onClick={() => setFilter("6")}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                filter === "6"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
+              }`}
+            >
+              Lv.6 エキスパート
+            </button>
+            <button
+              onClick={() => setFilter("7")}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
+                filter === "7"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
+              }`}
+            >
+              Lv.7 パイオニア
             </button>
           </div>
         </div>
 
         <div className="mb-6">
-          <h3 className="text-sm text-gray-400 mb-2">トピック</h3>
+          <h3 className="text-base font-semibold text-purple-400 mb-3">トピック</h3>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setTopicFilter("all")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 topicFilter === "all"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
               すべて
             </button>
             <button
               onClick={() => setTopicFilter("ネットワーク基礎")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 topicFilter === "ネットワーク基礎"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
               ネットワーク基礎
             </button>
             <button
               onClick={() => setTopicFilter("ネットワーク応用")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 topicFilter === "ネットワーク応用"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
               ネットワーク応用
             </button>
             <button
               onClick={() => setTopicFilter("トラブルシューティング")}
-              className={`px-4 py-2 rounded ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 topicFilter === "トラブルシューティング"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white/10 hover:bg-white/20"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"
               }`}
             >
               トラブルシューティング
@@ -169,13 +191,13 @@ export default function QuizPage() {
       {filteredQuizzes.length > 0 ? (
         <QuizList quizzes={filteredQuizzes} />
       ) : (
-        <div className="text-center p-8 bg-white/5 rounded-lg">
+        <div className="text-center p-8 bg-slate-800/30 border border-slate-700/30 rounded-2xl">
           <p>該当するクイズがありません。フィルタを変更してみてください。</p>
         </div>
       )}
 
       <div className="mt-6">
-        <Link href="/" className="text-blue-400 hover:underline">
+        <Link href="/" className="text-indigo-400 hover:text-indigo-300 transition-colors">
           ← ホームに戻る
         </Link>
       </div>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import ScoreAnimation from "@/components/quiz/ScoreAnimation";
 
 export default function QuizResult() {
   const searchParams = useSearchParams();
@@ -75,64 +76,57 @@ export default function QuizResult() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 md:p-24">
+    <main className="flex min-h-screen flex-col items-center p-6 md:p-24 relative">
       <div className="max-w-3xl w-full">
-        <h1 className="text-3xl font-bold mb-8 text-center">クイズ結果</h1>
+        <h1 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">クイズ結果</h1>
 
-        <div className="bg-white/5 rounded-lg p-8 mb-8">
-          <h2 className="text-xl mb-2 text-center">{quizTitle}</h2>
+        <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-10 mb-12 shadow-2xl">
+          <h2 className="text-2xl mb-4 text-center font-bold text-slate-100">{quizTitle}</h2>
           <div className="flex justify-center space-x-2 mb-8">
-            <span className="text-center text-sm bg-blue-600 px-2 py-1 rounded">
+            <span className="text-center text-sm bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded-full font-medium">
               レベル: {levelName}
             </span>
-            <span className="text-center text-sm bg-gray-700 px-2 py-1 rounded">
+            <span className="text-center text-sm bg-slate-700/60 text-slate-300 px-4 py-2 rounded-full border border-slate-600/50">
               {topic}
             </span>
           </div>
 
-          <div className="flex flex-col items-center mb-8">
-            <div className="relative w-36 h-36 mb-4">
-              <div className="w-full h-full rounded-full bg-gray-700"></div>
-              <div
-                className="absolute top-0 left-0 w-full h-full rounded-full border-4 border-transparent border-t-blue-500"
-                style={{
-                  transform: `rotate(${percentage * 3.6}deg)`,
-                  transition: "transform 1s ease-out",
-                }}
-              ></div>
-              <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                <span className="text-3xl font-bold">{percentage}%</span>
-              </div>
+          <div className="flex flex-col items-center mb-10">
+            <ScoreAnimation 
+              score={parseInt(score || "0")} 
+              total={parseInt(total || "1")}
+              onComplete={() => {}}
+            />
+            <div className="mt-6 text-lg">
+              <span className="text-slate-300 font-medium">所要時間: {durationFormatted}</span>
             </div>
-            <p className="text-xl font-semibold">
-              {score} / {total} 正解
-            </p>
-            <p className="text-sm text-gray-300 mt-2">
-              所要時間: {durationFormatted}
-            </p>
           </div>
 
-          <div className="bg-blue-900/30 p-4 rounded-lg mb-6">
-            <h3 className="font-bold mb-2">フィードバック:</h3>
-            <p>{feedback}</p>
-            <p className="mt-2">{timeComment}</p>
+          <div className="bg-indigo-500/20 border border-indigo-400/30 p-6 rounded-2xl mb-8 backdrop-blur-sm">
+            <h3 className="font-bold mb-3 text-indigo-400 text-lg">
+              フィードバック:
+            </h3>
+            <p className="text-slate-300 leading-relaxed mb-3">{feedback}</p>
+            <p className="text-slate-300 leading-relaxed">{timeComment}</p>
           </div>
 
-          <div className="bg-green-900/30 p-4 rounded-lg mb-8">
-            <h3 className="font-bold mb-2">次のステップ:</h3>
-            <p>{recommendation}</p>
+          <div className="bg-green-500/20 border border-green-400/30 p-6 rounded-2xl mb-10 backdrop-blur-sm">
+            <h3 className="font-bold mb-3 text-green-400 text-lg">
+              次のステップ:
+            </h3>
+            <p className="text-slate-300 leading-relaxed">{recommendation}</p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href={`/quiz/${quizId}`}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full text-center transition-colors"
+              className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               もう一度挑戦
             </Link>
             <Link
               href="/quiz"
-              className="bg-white/10 hover:bg-white/20 font-bold py-2 px-6 rounded-full text-center transition-colors"
+              className="bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/50 hover:border-slate-500/50 font-bold py-4 px-8 rounded-full text-center transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
             >
               別のクイズを選ぶ
             </Link>
@@ -140,7 +134,7 @@ export default function QuizResult() {
         </div>
 
         <div className="text-center">
-          <Link href="/" className="text-blue-400 hover:underline">
+          <Link href="/" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
             ホームに戻る
           </Link>
         </div>
