@@ -60,7 +60,7 @@ export default function QuizPage() {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded-lg transition-all duration-200-lg transition-all duration-200 ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 filter === "all"
                   ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
                   : "bg-slate-800/50 hover:bg-slate-700/50 border border-slate-600/30 hover:border-slate-500/50"

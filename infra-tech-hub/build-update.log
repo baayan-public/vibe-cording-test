@@ -1,0 +1,37 @@
+
+> infra-tech-hub@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.1
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 80s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/9) ...
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ ✓ Generating static pages (9/9)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/3) ...
+ ✓ Exporting (3/3)
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      172 B         105 kB
+├ ○ /_not-found                            977 B         102 kB
+├ ○ /quiz                                1.98 kB         107 kB
+├ ● /quiz/[id]                            2.7 kB         107 kB
+├   ├ /quiz/syn-handshake
+├   └ /quiz/tcp-flags
+└ ○ /result                              2.17 kB         107 kB
++ First Load JS shared by all             101 kB
+  ├ chunks/4bd1b696-02eb6a913bfa2457.js  53.2 kB
+  ├ chunks/684-f8f3a5762ce59b3e.js         46 kB
+  └ other shared chunks (total)          1.95 kB
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

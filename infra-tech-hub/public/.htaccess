@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Handle Angular and other front-end framework routes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Set proper MIME type for JS files
+<FilesMatch "\.js$">
+    Header set Content-Type "application/javascript"
+</FilesMatch>
+
+# Set proper MIME type for CSS files
+<FilesMatch "\.css$">
+    Header set Content-Type "text/css"
+</FilesMatch>

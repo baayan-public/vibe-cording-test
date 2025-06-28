@@ -1,0 +1,39 @@
+
+> infra-tech-hub@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.3.1 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Experiments (use with caution):
+     · turbo
+
+ ✓ Starting...
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` as Turbopack is now stable.
+ ✓ Ready in 29.1s
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.3.1 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+
+ ✓ Starting...
+ ✓ Ready in 22.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 24.1s
+ GET / 200 in 26141ms
+ ○ Compiling /favicon.ico ...
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 3571ms
+ ✓ Compiled /favicon.ico in 5.8s
+ GET /quiz 200 in 5163ms
+ ○ Compiling /quiz/[id] ...
+ ✓ Compiled /quiz/[id] in 3.8s
+ GET /quiz/syn-handshake 200 in 11958ms
+ ○ Compiling /result ...
+ ✓ Compiled /result in 3.3s
+ GET /result?quiz=syn-handshake&score=3&total=3&duration=9.888 200 in 3967ms
+ GET /quiz/syn-handshake 200 in 570ms
+ GET /result?quiz=syn-handshake&score=3&total=3&duration=4.323 200 in 600ms
+ GET /quiz 200 in 549ms
+ GET / 200 in 1199ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 1553ms
+[?25h
